@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+/* navbar */
+.nav {
+    display: block;
+
+}
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+
+
+/* plan btn & content  */
+
+.plans-btn {
+    position: relative;
+} 
+
+.plans-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+}
