@@ -18,7 +18,7 @@ a {
     background-color: #00000036;
     backdrop-filter: blur(8px);
     position: fixed;
-    padding: 0 10px;
+    padding: 5px 10px;
     width: 100%;
     box-shadow: 0 0 10px #0000007a;
 }
@@ -29,10 +29,30 @@ a {
 
 .nav-link {
     padding: 10px 15px;
-    transition: background .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: background-linear-gradient 1s;
+    position: relative;
 }
 .nav-link:hover {
-    background-color: #00000036;
+    background: linear-gradient(to  right top, #2020201e , #0000003a) ;
+}
+.nav-link:hover::after {
+    width: 100%;
+    left: 0;
+    border-radius: 0;
+}
+i {
+    margin-right: 10px;
+}
+
+.nav-link::after {
+    content: '';
+    width: 9px;
+    height: 3px;
+    top: 0;
+    left: 45%;
+    background-color: #fff;
+    position: absolute;
+    transition: left .6s, width .5s;
 }
 
 .plans-container {
@@ -76,8 +96,50 @@ a {
 /* moviles media 6.6 in max */
 
 @media (max-width:633px) {
+    /* nav */
+    .nav {
+        position: relative;
+        padding: 5px;
+    }
+
     /* navlinks */
     .nav-links {
+        padding: 10px;
+        top: 0%;
+        left: -140%;
+        width: 100%;
+        height: 100vh;
+        background-color: #0000008a;
+        display: flex;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
+        position: absolute;
+        transition: left .3s;
+    }
+    .nav-links.active {
+        left: 0;
+    }
+    /* plans container & content */
+    .plans-container {
+        display: flex;
+        flex-direction: column;
+    }
+    .plans-content {
+        width: 100%;
+        transition: .5s;
+    }
+    .plans-content.active {
+        position: relative;
+        top: 0;
+    }
+
+    /* nav-link */
+    .nav-link {
+        width: 100%;
+        padding: 20px;
+    }
+    .nav-link::after {
         display: none;
     }
 
@@ -86,21 +148,28 @@ a {
     .hamburguer-btn {
         background-color: transparent;
         cursor: pointer;
-        width: 100%;
-        height: 100%;
+        width: 45px;
+        height: 45px;
         display: flex;
         flex-direction: column;
         align-items: center;
         border: none;
         justify-content: space-evenly;
-        background-color: #0000001e;
         border-radius: 5px;
+        background-color: #00000079;
+        overflow: hidden;
     }
+
     .hamburguer-btn-container {
         display: block;
-        width: 45px;
-        height: 45px;
         overflow: hidden;
+    }
+    .hamburguer-btn-container.active {
+        position: relative;
+        z-index: 1000;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.685);
+        padding: 5px;
     }
     /* hamburguer lines */
     
@@ -113,14 +182,14 @@ a {
         opacity: 1;
         transition: transform .7s, opacity .5s, left .4s;
     }
-    .hamburguer-btn:hover > .line:first-child {
+    .hamburguer-btn.active > .line:first-child {
         transform: rotate(-45deg) translate(-25%, 8px);
     }
-    .hamburguer-btn:hover > .line:nth-child(2) {
+    .hamburguer-btn.active > .line:nth-child(2) {
         opacity: 0;
         left: -100px;
     }
-    .hamburguer-btn:hover > .line:nth-child(3) {
+    .hamburguer-btn.active > .line:nth-child(3) {
         transform: rotate(45deg) translate(-20%, -8px);
     }
 }
