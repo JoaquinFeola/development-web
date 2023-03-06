@@ -2,23 +2,43 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: #fff;
+}
 
 
 
 /* navbar */
 .nav {
     display: block;
-
+    background-color: #00000036;
+    backdrop-filter: blur(8px);
+    position: fixed;
+    padding: 0 10px;
+    width: 100%;
+    box-shadow: 0 0 10px #0000007a;
 }
 .nav-links {
     display: flex;
-    gap: 20px;
+    position: relative;
 }
 
+.nav-link {
+    padding: 10px 15px;
+    transition: background .4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.nav-link:hover {
+    background-color: #00000036;
+}
 
-
+.plans-container {
+    display: flex;
+    position: relative;
+}
 /* plan btn & content  */
 
 .plans-btn {
@@ -27,7 +47,80 @@
 
 .plans-content {
     position: absolute;
+    top: 100%;
+    left: 0;
+    opacity: 0;
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color: #000000b9;
+    padding: 5px;
+    border-radius: 0 0 5px 5px;
+    transition: opacity .6s;
+}
+.plans-content.active {
+    opacity: 1;
+}
+
+.plans-content .plan-link {
+    padding: 10px;
+    transition: background .7s ;
+}
+.plans-content .plan-link:hover {
+    background-color: rgba(8, 0, 0, 0.541);
+}
+
+.hamburguer-btn-container {
+    display: none;
+}
+
+/* moviles media 6.6 in max */
+
+@media (max-width:633px) {
+    /* navlinks */
+    .nav-links {
+        display: none;
+    }
+
+
+    /* hamburguer btn  */
+    .hamburguer-btn {
+        background-color: transparent;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: none;
+        justify-content: space-evenly;
+        background-color: #0000001e;
+        border-radius: 5px;
+    }
+    .hamburguer-btn-container {
+        display: block;
+        width: 45px;
+        height: 45px;
+        overflow: hidden;
+    }
+    /* hamburguer lines */
+    
+    .line {
+        background-color: #fff;
+        width: 80%;
+        height: 2px;
+        position: relative;
+        left: 0;
+        opacity: 1;
+        transition: transform .7s, opacity .5s, left .4s;
+    }
+    .hamburguer-btn:hover > .line:first-child {
+        transform: rotate(-45deg) translate(-25%, 8px);
+    }
+    .hamburguer-btn:hover > .line:nth-child(2) {
+        opacity: 0;
+        left: -100px;
+    }
+    .hamburguer-btn:hover > .line:nth-child(3) {
+        transform: rotate(45deg) translate(-20%, -8px);
+    }
 }
